@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Text Change with Color Effects</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            margin: 0;
+            transition: background 0.5s ease-in-out;
+        }
+
+        #demo {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: color 0.5s ease-in-out;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            color: #fff;
+            background: linear-gradient(45deg, #ff6b6b, #f06595);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #f06595, #ff6b6b);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <p id="demo">Click the button to change this text and colors.</p>
+        <button onclick="changeText()">Click Me!</button>
+    </div>
+
+    <script>
+        let colorIndex = 0;
+
+        // Color arrays for text and background
+        const textColors = ["#ffdd57", "#00d2ff", "#ff6b6b", "#57ff9f", "#ff57b2"];
+        const bgColors = ["#ff6b6b", "#6a11cb", "#2575fc", "#24243e", "#1f1c2c"];
+
+        function changeText() {
+            const demoText = document.getElementById("demo");
+            
+            // Change the text content
+            demoText.innerHTML = "Hello World! You just changed the text and colors.";
+
+            // Change text color with smooth transition
+            demoText.style.color = textColors[colorIndex];
+
+            // Change background color
+            document.body.style.background = `linear-gradient(135deg, ${bgColors[colorIndex]}, ${textColors[colorIndex]})`;
+
+            // Update color index
+            colorIndex = (colorIndex + 1) % textColors.length;
+        }
+    </script>
+
+</body>
+</html>
